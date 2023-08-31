@@ -1,6 +1,7 @@
 import Field from '../Field'
 import { Dropdown } from 'dropdown-onceuponatime'
 import { states, departments } from '../../util/data'
+import ModalForm from '../ModalForm'
 
 
 function CreateEmployee () {
@@ -18,6 +19,7 @@ function CreateEmployee () {
         <Field nom='Zip Code' type='number' />
       </fieldset>
       <Dropdown label='Department' name='department' obj={departments} field1='name' />
+      <ModalForm />
     </div>
   )
 }
