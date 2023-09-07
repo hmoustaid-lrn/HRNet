@@ -41,12 +41,11 @@ function ModalForm () {
 
   function closeModal () {
     setIsOpen(false)
-    navigate('/Employees')
+    navigate('/list-employees')
   }
 
   return (
     <div>
-      <button onClick={openModal} id='button-save'>Save</button>
       <Modal
         className='modal'
         isOpen={modalIsOpen}

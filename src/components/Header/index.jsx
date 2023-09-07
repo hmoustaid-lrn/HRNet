@@ -1,6 +1,6 @@
 function Header () {
     return (
-      <header>
+      <header className="text-center">
         <h1> HRnet </h1>
       </header>
     )
