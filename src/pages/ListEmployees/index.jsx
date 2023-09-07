@@ -1,16 +1,22 @@
-import { columns } from '../../utils/tools'
+import { columns } from '../../utils/tableColumns'
 import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 
-import {useSelector} from "react-redux";
+import { useSelector, useDispatch } from "react-redux"
+
+import { useState} from "react";
+
+import { deleteEmployeeAction } from "../../state/employees";
+
+
 
 
 function ListEmployees() {
   const DataTable = lazy(() => import('react-data-table-component'))
-  const employees =  useSelector((state) => state.employees.list)
+  const employees = useSelector((state) => state.employees.list)
 
+  const dispatch = useDispatch();
 
-  console.log(employees)
 
   const filteredItems = employees?.filter(
     item => ((item.firstName)) ||
@@ -30,6 +36,21 @@ function ListEmployees() {
     return <h2>🌀 Loading...</h2>
   }
 
+  const [toggleCleared, setToggleCleared] = useState(false);
+
+
+  const handleDeleteRowSelected = ({ selectedRows }) => {
+    if (selectedRows.length !== 0) {
+      const deleteEmployees = window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.firstName)}?`)
+      if(deleteEmployees){
+        setToggleCleared(!toggleCleared)
+        dispatch(deleteEmployeeAction(selectedRows))
+      }
+    }
+    
+  };
+
+
   return (
 
     <main className="col-lg-10 col-md-9 mx-auto">
@@ -39,6 +60,9 @@ function ListEmployees() {
           <DataTable
             columns={columns}
             data={filteredItems}
+            selectableRows
+            onSelectedRowsChange={handleDeleteRowSelected}
+            clearSelectedRows={toggleCleared}
             pagination
             paginationRowsPerPageOptions={[10, 25, 50, 100]}
             subHeader
