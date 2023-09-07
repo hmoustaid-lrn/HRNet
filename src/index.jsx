@@ -3,6 +3,11 @@ import { createRoot } from 'react-dom/client'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import Router from './Router'
+
+import { Provider } from "react-redux";
+import { persistor, store } from "./state/store";
+import { PersistGate } from "redux-persist/integration/react";
+
 import './index.css';
 
 
@@ -11,6 +16,10 @@ const root = createRoot(container)
 
 root.render(
   <React.StrictMode>
-    <Router />
-  </React.StrictMode>
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<Router />
+			</PersistGate>
+		</Provider>
+	</React.StrictMode>
 )
