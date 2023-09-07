@@ -1,23 +1,18 @@
 import { columns } from '../../utils/tools'
-import { useState, useEffect, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
+
+import {useSelector} from "react-redux";
 
 
 function ListEmployees() {
   const DataTable = lazy(() => import('react-data-table-component'))
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    recupereData()
-  }, [])
+  const employees =  useSelector((state) => state.employees.list)
 
 
-  function recupereData() {
-    const employees = JSON.parse(localStorage.getItem('employees'))
-    setData(employees)
-  }
+  console.log(employees)
 
-  const filteredItems = data?.filter(
+  const filteredItems = employees?.filter(
     item => ((item.firstName)) ||
       (item.lastName) ||
       (item.department) ||
