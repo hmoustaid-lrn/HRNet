@@ -6,6 +6,9 @@ import {useDispatch} from "react-redux";
 
 import { addEmployeeAction } from "../../state/employees";
 
+import { Modal } from 'hmstd-react-modal'
+
+
 
 function CreateEmployee() {
 
@@ -24,6 +27,8 @@ function CreateEmployee() {
     zipCode: '',
   })
 
+  const [validEmployee, setIsValidEmployee] = useState(false)
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
 
@@ -39,10 +44,14 @@ function CreateEmployee() {
       zipCode: formData.zipCode,
     }
     
-    console.log(newEmployee)
 
-    dispatch(addEmployeeAction(newEmployee));
+    dispatch(addEmployeeAction(newEmployee))
 
+    setIsValidEmployee(true)
+    console.log(validEmployee)
+
+    const form = e.target
+    form.reset()
 
   }
 
@@ -56,6 +65,10 @@ function CreateEmployee() {
     newFormData[fieldName] = fieldValue
 
     setFormData(newFormData)
+  }
+
+  const handleModal = () => {
+    setIsValidEmployee(false)
   }
 
   return (
@@ -116,6 +129,16 @@ function CreateEmployee() {
       <div className="text-center">
         <button type="submit" className="btn btn-primary mt-2 col-3">Save</button>
       </div>
+
+      {validEmployee ? (
+          <Modal
+            text="Employee Created !"
+            handleResponse={handleModal}
+          />
+        ) : (
+          ''
+        )}
+
     </form>
   )
 }
