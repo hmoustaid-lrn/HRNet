@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.1",
     "dropdown-onceuponatime": "^0.1.14",
-    "hmstd-react-modal": "^0.3.1",
+    "hmstd-react-modal": "^0.3.2",
     "react": "^18.2.0",
     "react-ab-data-table": "^0.0.6",
     "react-data-table-component": "^7.5.4",
