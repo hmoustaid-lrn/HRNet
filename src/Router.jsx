@@ -8,11 +8,11 @@ import ListEmployees from "./pages/ListEmployees";
 function Router() {
 	return (
 		<React.StrictMode>
-			<BrowserRouter>
-        <Header />
+			<BrowserRouter basename="HRNet">
+				<Header />
 				<Routes>
 					<Route exact path="/" element={<Home />} />
-          <Route exact path="/list-employees" element={<ListEmployees />} />
+					<Route exact path="/list-employees" element={<ListEmployees />} />
 				</Routes>
 			</BrowserRouter>
 		</React.StrictMode>
