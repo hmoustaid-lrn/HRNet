@@ -48,7 +48,6 @@ function CreateEmployee() {
     dispatch(addEmployeeAction(newEmployee))
 
     setIsValidEmployee(true)
-    console.log(validEmployee)
 
     const form = e.target
     form.reset()
@@ -130,14 +129,7 @@ function CreateEmployee() {
         <button type="submit" className="btn btn-primary mt-2 col-3">Save</button>
       </div>
 
-      {validEmployee ? (
-          <Modal
-            text="Employee Created !"
-            handleResponse={handleModal}
-          />
-        ) : (
-          ''
-        )}
+      {validEmployee ? (<Modal text="Employee Created !" handleClick={handleModal} buttonText="Close"/>) : ('')}
 
     </form>
   )
