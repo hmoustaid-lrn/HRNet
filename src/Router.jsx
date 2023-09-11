@@ -8,7 +8,7 @@ import ListEmployees from "./pages/ListEmployees";
 function Router() {
 	return (
 		<React.StrictMode>
-			<BrowserRouter basename="HRNet">
+			<BrowserRouter basename="/HRNet">
 				<Header />
 				<Routes>
 					<Route exact path="/" element={<Home />} />
