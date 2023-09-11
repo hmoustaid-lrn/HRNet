@@ -12,25 +12,12 @@ import { deleteEmployeeAction } from "../../state/employees";
 
 
 function ListEmployees() {
+
   const DataTable = lazy(() => import('react-data-table-component'))
+
   const employees = useSelector((state) => state.employees.list)
 
   const dispatch = useDispatch();
-
-
-  const filteredItems = employees?.filter(
-    item => ((item.firstName)) ||
-      (item.lastName) ||
-      (item.department) ||
-      (item.dateOfBirth) ||
-      (item.startDate) ||
-      (item.state) ||
-      (item.city) ||
-      (item.street) ||
-      (item.zipCode)
-  )
-
-
 
   function loading() {
     return <h2>🌀 Loading...</h2>
@@ -48,7 +35,7 @@ function ListEmployees() {
       }
     }
     
-  };
+  }
 
 
   return (
@@ -59,7 +46,7 @@ function ListEmployees() {
         <Suspense fallback={loading()}>
           <DataTable
             columns={columns}
-            data={filteredItems}
+            data={employees}
             selectableRows
             onSelectedRowsChange={handleDeleteRowSelected}
             clearSelectedRows={toggleCleared}
